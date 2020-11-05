@@ -64,7 +64,7 @@ echo ...oder mit STRG+C abbrechen!
 echo.
 pause
 
-move %~d1%~p1backup\%backuptimestamp%_%~n1.zip V:\RobotFramework\IT-FG\Robot-Projekte\testautomatisierung-git_haliem\backup
+move %~d1%~p1backup\%backuptimestamp%_%~n1.zip V:\RobotFramework\IT-FG\Robot-Projekte\
 
 echo.
 echo Taste druecken zum beenden!
