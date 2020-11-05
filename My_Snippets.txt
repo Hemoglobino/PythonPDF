@@ -1,0 +1,72 @@
+@echo off
+
+echo ************
+echo Loescht alle Ueberreste von Robot Tests in diesen und allen Unterverzeichnissen
+echo.
+echo *.png, log.html, report.html, output.xml
+echo ************
+
+
+echo "Taste druecken um zu beginnen ....  - Oder Fenster schliessen zum beenden!"
+pause
+
+del /s *.png
+del /s *.log
+del /s log.html
+del /s report.html
+del /s output.xml
+echo.
+echo.
+echo.
+echo "Taste druecken um alle Chrome Prozesse zu beenden - Oder Fenster schliessen zum beenden!"
+
+pause
+
+taskkill /IM chrome.exe -f
+**************************************************************************
+
+@echo off
+REM #####################################
+REM Drag and Drop Folder here to Backup!
+REM Author: 
+REM #####################################
+
+REM Create Backup Folder
+mkdir backup
+
+REM Set Timestamp for Filename
+set backuptimestamp=%date:~-4%%date:~-7,2%%date:~-10,2%_%time:~-11,2%%time:~-8,2%%time:~-5,2%
+setlocal enabledelayedexpansion
+set backuptimestamp=!backuptimestamp:^ =0!
+setlocal disabledelayedexpansion
+
+echo.
+echo ##%~d1%~p1backup\%backuptimestamp%_%~n1.zip##
+
+REM echo %~p1 #Path only
+REM echo %~n1 #Filename only
+REM echo %~d1 #Drive Letter only
+
+REM Zip folder
+zip -r %~d1%~p1backup\%backuptimestamp%_%~n1.zip %1
+
+
+
+echo.
+echo.
+echo.
+echo.
+echo Backup auf das Projektlaufwerk verschieben?
+echo.
+echo Taste druecken!
+echo.
+echo ...oder mit STRG+C abbrechen!
+echo.
+pause
+
+move %~d1%~p1backup\%backuptimestamp%_%~n1.zip V:\RobotFramework\IT-FG\Robot-Projekte\testautomatisierung-git_haliem\backup
+
+echo.
+echo Taste druecken zum beenden!
+echo.
+pause
